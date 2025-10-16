@@ -37,6 +37,7 @@ ENV/
 examples/output/*
 !examples/output/.gitkeep
 output/
+demo_output/
 
 # API keys and secrets
 .env
