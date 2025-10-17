@@ -6,6 +6,7 @@ Supports multiple LLM providers (OpenAI, Anthropic, etc.)
 import os
 import json
 from typing import Optional, Dict, Any
+from xml.parsers.expat import model
 import openai
 
 
@@ -23,14 +24,8 @@ class LLMClient:
         """
         self.provider = provider
         self.model = model
-        
-        if provider == "openai":
-            self.api_key = api_key or os.getenv("OPENAI_API_KEY")
-            if not self.api_key:
-                print("Warning: No OpenAI API key provided. Set OPENAI_API_KEY environment variable.")
-            openai.api_key = self.api_key
-        else:
-            raise ValueError(f"Unsupported provider: {provider}")
+        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        self.client = openai.OpenAI(api_key=api_key)
     
     def generate(self, prompt: str, system_prompt: Optional[str] = None, 
                  temperature: float = 0.7, max_tokens: int = 4000) -> str:
@@ -52,12 +47,12 @@ class LLMClient:
                 if system_prompt:
                     messages.append({"role": "system", "content": system_prompt})
                 messages.append({"role": "user", "content": prompt})
-                
-                response = openai.ChatCompletion.create(
+
+                response = self.client.chat.completions.create(
                     model=self.model,
                     messages=messages,
                     temperature=temperature,
-                    max_tokens=max_tokens
+                    max_tokens=max_tokens,
                 )
                 return response.choices[0].message.content
             else:

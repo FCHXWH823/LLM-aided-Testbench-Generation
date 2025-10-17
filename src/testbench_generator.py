@@ -58,7 +58,7 @@ Generate a Verilog testbench that:
 1. Declares all necessary signals
 2. Instantiates the module under test
 3. Includes a systematic set of test patterns covering all cases
-4. Uses $display to show inputs for each test
+4. Uses $display to show inputs for each test (all $display statements are in the initial block and before $finish statement.)
 5. Does NOT include expected outputs or assertions yet (we will add those later)
 6. Numbers each test case
 
@@ -72,13 +72,13 @@ TESTBENCH_CODE:
 [testbench code here]
 ```
 
-TEST_PATTERNS:
+TEST_PATTERNS (a list of dictionaries. Each dictionary contains only input signal names mapped to their values as plain binary strings (no prefixes like 0b, no spaces). Do not include any test_number field):
 ```json
 [array of test patterns]
 ```
 """
 
-        response = self.llm_client.generate(user_prompt, system_prompt, temperature=0.3, max_tokens=4000)
+        response = self.llm_client.generate(user_prompt, system_prompt, max_tokens=4000)
         
         # Parse the response
         testbench_code = self._extract_section(response, "TESTBENCH_CODE:", "```verilog", "```")

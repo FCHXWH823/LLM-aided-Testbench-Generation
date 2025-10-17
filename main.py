@@ -13,7 +13,7 @@ import argparse
 import sys
 import os
 from src.testbench_pipeline import TestbenchPipeline
-
+import subprocess
 
 def main():
     parser = argparse.ArgumentParser(
@@ -36,20 +36,23 @@ Examples:
     )
     
     parser.add_argument('--description', '-d', 
+                       default='examples/input/mux_description.txt',
                        help='Path to file containing natural language description')
     parser.add_argument('--verilog', '-v', 
+                       default='examples/input/mux2to1.v',
                        help='Path to Verilog module file to be tested')
     parser.add_argument('--output', '-o', 
                        default='examples/output',
                        help='Output directory for generated files (default: examples/output)')
     parser.add_argument('--model', '-m',
-                       default='gpt-4',
+                       default='gpt-4o',
                        help='LLM model to use (default: gpt-4)')
     parser.add_argument('--provider',
                        default='openai',
                        choices=['openai'],
                        help='LLM provider (default: openai)')
     parser.add_argument('--api-key',
+                       default="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",
                        help='API key for LLM provider (overrides OPENAI_API_KEY env var)')
     parser.add_argument('--example', '-e',
                        action='store_true',
@@ -124,6 +127,20 @@ endmodule"""
     try:
         result = pipeline.run(description, verilog_code, args.output)
         print("\n✓ Testbench generation completed successfully!")
+        # Step 5: Update testbench with golden outputs
+        print("\n[Step 6] iverilog simulation of the final testbench and golden verilog model...")
+        iverilog_command = f"iverilog -g2012 -o {args.output}/out.vvp {args.verilog} {args.output}/testbench_final.v"
+        print("Testbench Compilation......")
+        result = subprocess.run(iverilog_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
+        if result.stderr:
+            print(f"Compilation error: {result.stderr}")
+        else:
+            print("Testbench Simulation......")
+            result = subprocess.run(f"vvp {args.output}/out.vvp", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
+            if result.stdout:
+                print(f"result:\n{result.stdout}")
+        
+        
         return 0
     except Exception as e:
         print(f"\n✗ Error during testbench generation: {e}")

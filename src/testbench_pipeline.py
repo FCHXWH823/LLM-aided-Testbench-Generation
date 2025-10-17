@@ -9,7 +9,7 @@ from .llm_client import LLMClient
 from .testbench_generator import TestbenchGenerator
 from .golden_model_generator import GoldenModelGenerator
 from .testbench_updater import TestbenchUpdater
-
+import subprocess
 
 class TestbenchPipeline:
     """
@@ -35,7 +35,7 @@ class TestbenchPipeline:
         self.llm_client = LLMClient(api_key, model, provider)
         self.testbench_gen = TestbenchGenerator(self.llm_client)
         self.golden_gen = GoldenModelGenerator(self.llm_client)
-        self.testbench_updater = TestbenchUpdater()
+        self.testbench_updater = TestbenchUpdater(self.llm_client)
         
     def run(self, description: str, verilog_code: str, output_dir: str = "output") -> Dict[str, Any]:
         """
@@ -91,6 +91,15 @@ class TestbenchPipeline:
         
         print(f"  - Generated Python golden model ({len(python_code)} characters)")
         
+        # change testbench_result['test_patterns'] value to integral values
+        patterns = []
+        for pattern in testbench_result['test_patterns']:
+            for key in pattern:
+                if isinstance(pattern[key], str):
+                    pattern[key] = int(pattern[key], 2)
+            patterns.append(pattern)
+        testbench_result['test_patterns'] = patterns
+
         # Save Python golden model
         python_path = os.path.join(output_dir, "golden_model.py")
         with open(python_path, 'w') as f:
