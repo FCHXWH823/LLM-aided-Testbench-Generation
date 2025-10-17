@@ -31,11 +31,13 @@ This project implements a complete **LLM-aided testbench generation system** for
 - Includes robust error handling for model execution
 
 #### 4. **Testbench Updater** (`src/testbench_updater.py`)
-- **Step 5 Implementation**: Enhances testbench with verification logic
+- **Step 5 Implementation**: Enhances testbench with verification logic using LLM
+- Uses LLM to intelligently update testbench with verification logic
 - Injects expected outputs from golden model
 - Adds pass/fail checking for each test case
 - Implements test summary reporting
 - Maintains proper Verilog formatting
+- Falls back to rule-based approach when LLM is unavailable
 
 #### 5. **Pipeline Orchestrator** (`src/testbench_pipeline.py`)
 - Coordinates all steps in the generation process

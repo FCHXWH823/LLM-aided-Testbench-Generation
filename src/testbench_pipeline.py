@@ -35,7 +35,7 @@ class TestbenchPipeline:
         self.llm_client = LLMClient(api_key, model, provider)
         self.testbench_gen = TestbenchGenerator(self.llm_client)
         self.golden_gen = GoldenModelGenerator(self.llm_client)
-        self.testbench_updater = TestbenchUpdater()
+        self.testbench_updater = TestbenchUpdater(self.llm_client)
         
     def run(self, description: str, verilog_code: str, output_dir: str = "output") -> Dict[str, Any]:
         """
