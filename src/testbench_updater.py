@@ -208,7 +208,7 @@ Format your response as:
                 continue
             
             # Check for end of initial block
-            if in_initial and stripped == 'end' or stripped.startswith('end'):
+            if in_initial and (stripped == 'end' or stripped.startswith('end')):
                 # Add final summary before the end
                 indent = len(line) - len(line.lstrip())
                 indent_str = ' ' * indent
