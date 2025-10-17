@@ -31,6 +31,22 @@ This project automates the creation of Verilog testbenches by:
 - Test summary reporting
 - Detailed output comparison
 
+## 📊 Presentation
+
+A comprehensive PowerPoint presentation explaining the framework is available: **[LLM_Aided_Testbench_Generation_Presentation.pptx](LLM_Aided_Testbench_Generation_Presentation.pptx)**
+
+The presentation includes:
+- Detailed explanation of the 5-step pipeline workflow
+- Visual diagrams of the testbench generation framework
+- Input/output specifications
+- iverilog-based evaluation framework
+- Example demonstrations and usage workflows
+
+You can also regenerate the presentation by running:
+```bash
+python create_presentation.py
+```
+
 ## Project Structure
 
 ```
@@ -52,6 +68,8 @@ LLM-aided-Testbench-Generation/
 ├── main.py                         # CLI entry point
 ├── requirements.txt                # Python dependencies
 ├── config.yaml                     # Configuration file
+├── create_presentation.py          # Script to generate PowerPoint presentation
+├── LLM_Aided_Testbench_Generation_Presentation.pptx  # Project presentation
 └── README.md                       # This file
 ```
 
