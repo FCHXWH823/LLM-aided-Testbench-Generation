@@ -2,6 +2,22 @@
 
 An automated testbench generation system that leverages Large Language Models (LLMs) to create comprehensive Verilog testbenches with golden reference outputs.
 
+## 🚀 Quick Start with Jupyter Notebook
+
+**NEW!** You can now use the complete system in a single Jupyter notebook:
+
+```bash
+jupyter notebook LLM_Aided_Testbench_Generation.ipynb
+```
+
+The notebook is **self-contained** and includes:
+- ✅ All source code with explanations
+- ✅ Two complete examples (MUX and 4-bit Adder)
+- ✅ Step-by-step execution guide
+- ✅ Simulation integration
+
+See [NOTEBOOK_GUIDE.md](NOTEBOOK_GUIDE.md) for detailed instructions.
+
 ## Overview
 
 This project automates the creation of Verilog testbenches by:
@@ -35,6 +51,8 @@ This project automates the creation of Verilog testbenches by:
 
 ```
 LLM-aided-Testbench-Generation/
+├── LLM_Aided_Testbench_Generation.ipynb  # 🆕 Complete system in Jupyter notebook
+├── NOTEBOOK_GUIDE.md                     # Guide for using the notebook
 ├── src/
 │   ├── __init__.py                 # Package initialization
 │   ├── llm_client.py               # LLM API client
