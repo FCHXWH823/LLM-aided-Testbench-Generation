@@ -52,7 +52,7 @@ Examples:
                        choices=['openai'],
                        help='LLM provider (default: openai)')
     parser.add_argument('--api-key',
-                       default="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",
+                       default=os.environ.get('TbGeneration'),
                        help='API key for LLM provider (overrides OPENAI_API_KEY env var)')
     parser.add_argument('--example', '-e',
                        action='store_true',
@@ -150,4 +150,5 @@ endmodule"""
 
 
 if __name__ == '__main__':
+    # print(os.environ.get('TbGeneration'))
     sys.exit(main())
