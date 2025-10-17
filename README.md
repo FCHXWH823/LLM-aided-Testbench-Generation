@@ -180,10 +180,11 @@ vsim -c work.testbench -do "run -all; quit"
 - Captures expected outputs for each test case
 
 ### Step 5: Testbench Update
-- Injects verification logic into the testbench
+- Uses LLM to intelligently inject verification logic into the testbench
 - Adds expected output comparisons
 - Implements pass/fail tracking
 - Generates test summary report
+- Falls back to rule-based approach when LLM is unavailable
 
 ## Configuration
 
