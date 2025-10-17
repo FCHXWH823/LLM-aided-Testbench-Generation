@@ -49,10 +49,14 @@ LLM-aided-Testbench-Generation/
 │   │   ├── mux_description.txt    # MUX description
 │   │   └── mux2to1.v              # MUX Verilog module
 │   └── output/                     # Generated outputs (created at runtime)
+├── LLM_Testbench_Generation_Demo.ipynb  # Interactive Jupyter notebook tutorial
 ├── main.py                         # CLI entry point
+├── demo.py                         # Interactive demo script
 ├── requirements.txt                # Python dependencies
 ├── config.yaml                     # Configuration file
-└── README.md                       # This file
+├── README.md                       # This file
+├── USAGE_GUIDE.md                  # Detailed usage guide
+└── NOTEBOOK_GUIDE.md               # Jupyter notebook guide
 ```
 
 ## Installation
@@ -76,6 +80,23 @@ export OPENAI_API_KEY='your-api-key-here'
 Or use the `--api-key` command line option.
 
 ## Usage
+
+### 📓 Interactive Jupyter Notebook (Recommended for Learning)
+
+For an interactive, hands-on tutorial with detailed explanations:
+
+```bash
+jupyter notebook LLM_Testbench_Generation_Demo.ipynb
+```
+
+The notebook includes:
+- 8 comprehensive sections with introductions
+- Two complete examples (multiplexer and adder)
+- Step-by-step explanations of the pipeline
+- Detailed exploration of generated files
+- Can run without an API key in demo mode
+
+See [NOTEBOOK_GUIDE.md](NOTEBOOK_GUIDE.md) for more details.
 
 ### Quick Start with Example
 
