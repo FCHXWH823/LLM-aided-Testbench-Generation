@@ -35,6 +35,7 @@ This project automates the creation of Verilog testbenches by:
 
 ```
 LLM-aided-Testbench-Generation/
+├── LLM_Aided_Testbench_Generation.ipynb  # 🆕 Jupyter notebook (lab assignment)
 ├── src/
 │   ├── __init__.py                 # Package initialization
 │   ├── llm_client.py               # LLM API client
@@ -44,10 +45,13 @@ LLM-aided-Testbench-Generation/
 │   └── testbench_pipeline.py      # Main orchestrator
 ├── examples/
 │   ├── input/                      # Example input files
-│   │   ├── description.txt         # Natural language description
+│   │   ├── counter_3bit.v          # 3-bit counter example
+│   │   ├── counter_description.txt # Counter description
+│   │   ├── lfsr_4bit.v             # 4-bit LFSR example
+│   │   ├── lfsr_description.txt    # LFSR description
 │   │   ├── adder4bit.v            # Example Verilog module
-│   │   ├── mux_description.txt    # MUX description
-│   │   └── mux2to1.v              # MUX Verilog module
+│   │   ├── mux2to1.v              # MUX Verilog module
+│   │   └── ...                    # Other examples
 │   └── output/                     # Generated outputs (created at runtime)
 ├── main.py                         # CLI entry point
 ├── requirements.txt                # Python dependencies
@@ -56,6 +60,14 @@ LLM-aided-Testbench-Generation/
 ```
 
 ## Installation
+
+### Prerequisites
+
+- Python 3.7+
+- OpenAI API access (or compatible LLM provider)
+- (Optional) Verilog simulator for testing generated testbenches (e.g., iverilog)
+
+### Setup
 
 1. **Clone the repository:**
 ```bash
@@ -77,7 +89,29 @@ Or use the `--api-key` command line option.
 
 ## Usage
 
-### Quick Start with Example
+### Option 1: Jupyter Notebook (Recommended for Lab Assignment)
+
+The easiest way to get started is with the included Jupyter notebook:
+
+```bash
+jupyter notebook LLM_Aided_Testbench_Generation.ipynb
+```
+
+The notebook includes:
+- Complete self-contained code (no external imports needed)
+- Two working examples: 3-bit Counter and 4-bit LFSR
+- Step-by-step execution
+- Lab report with prompt modifications and golden testbench comparisons
+- iverilog compilation and simulation results
+
+**Lab Assignment Features:**
+- ✅ Two different examples from ChipChat (Counter, LFSR)
+- ✅ Prompt modification documentation
+- ✅ Golden testbench comparison
+- ✅ iverilog compilation results
+- ✅ Complete report sections
+
+### Option 2: Command-Line Interface
 
 Run the tool with the built-in example:
 

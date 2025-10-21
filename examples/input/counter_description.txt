@@ -1,0 +1,13 @@
+A 3-bit up counter module.
+
+The module takes a clock signal (clk), an active-low reset signal (reset_n), and an enable signal (en).
+
+Functionality:
+- Input 'clk': Clock signal
+- Input 'reset_n': Active-low asynchronous reset (when 0, counter resets to 0)
+- Input 'en': Enable signal (counter increments only when en is 1)
+- Output 'count': 3-bit counter output (unsigned, ranges from 0 to 7)
+
+The counter increments by 1 on each rising edge of the clock when enabled.
+When the counter reaches its maximum value (7), it wraps around to 0 on the next increment.
+When reset_n is 0, the counter immediately resets to 0 regardless of clock or enable.

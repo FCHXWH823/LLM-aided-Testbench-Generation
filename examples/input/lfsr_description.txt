@@ -1,0 +1,15 @@
+A 4-bit Linear Feedback Shift Register (LFSR) module.
+
+The module implements a 4-bit LFSR using XOR feedback for pseudo-random sequence generation.
+
+Functionality:
+- Input 'clk': Clock signal
+- Input 'reset_n': Active-low asynchronous reset (when 0, LFSR loads seed value)
+- Input 'en': Enable signal (LFSR shifts only when en is 1)
+- Output 'lfsr_out': 4-bit LFSR output
+
+The LFSR uses taps at positions 4 and 1 (polynomial x^4 + x + 1).
+On each clock edge (when enabled), the LFSR shifts right and the feedback bit 
+(XOR of bits 3 and 0) is inserted at the leftmost position.
+When reset_n is 0, the LFSR is initialized with seed value 4'b1000.
+The LFSR generates a maximum-length sequence of 15 unique non-zero states before repeating.
