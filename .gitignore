@@ -38,6 +38,10 @@ examples/output/*
 !examples/output/.gitkeep
 output/
 demo_output/
+notebook_output/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
 
 # API keys and secrets
 .env
